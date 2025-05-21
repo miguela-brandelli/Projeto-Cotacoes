@@ -2,8 +2,10 @@ import './App.css'
 import IndicadorList from './Components/IndicadorList'
 import IndicadorForm from './Components/IndicadorForm'
 import CotacaoForm from './Components/CotacaoForm'
+// import Header from './Header'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+
 
 function App() {
   const [indicadores, setIndicadores] = useState([]);
@@ -20,6 +22,7 @@ function App() {
 
   return (
     <div className="App">
+      {/* <Header /> */}
       <h1>Sistema de Cotações</h1>
       <IndicadorForm onCadastro={() => carregarIndicadores()} />
       <IndicadorList indicadores={indicadores} />

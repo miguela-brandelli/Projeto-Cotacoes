@@ -24,7 +24,7 @@ export default function IndicadorForm({ onCadastro }) {
 
   return (
     <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
-      <h2>Cadastrar Indicador</h2>
+      <h2>Cadastrar Indicador:</h2>
       <div>
         <label>Nome: </label>
         <input

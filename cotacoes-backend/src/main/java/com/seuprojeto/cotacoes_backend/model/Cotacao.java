@@ -11,7 +11,6 @@ public class Cotacao {
     private Long id;
 
     private Double valor;
-
     private LocalDate data;
 
     @ManyToOne
@@ -19,4 +18,32 @@ public class Cotacao {
     private Indicador indicador;
 
     // Getters e Setters
+
+    public Long getId() {
+        return id;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public Indicador getIndicador() {
+        return indicador;
+    }
+
+    public void setIndicador(Indicador indicador) {
+        this.indicador = indicador;
+    }
 }
