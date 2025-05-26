@@ -5,6 +5,9 @@ import com.seuprojeto.cotacoes_backend.repository.IndicadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.seuprojeto.cotacoes_backend.dto.CotacaoDTO;
+import com.seuprojeto.cotacoes_backend.dto.IndicadorComCotacoesDTO;
+// import com.seuprojeto.cotacoes_backend.model.Cotacao;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +31,7 @@ public class IndicadorController {
     public ResponseEntity<Indicador> buscarPorId(@PathVariable Long id) {
         Optional<Indicador> indicador = repository.findById(id);
         return indicador.map(ResponseEntity::ok)
-                        .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.notFound().build());
     }
 
     // POST - Criar um novo indicador
@@ -56,5 +59,27 @@ public class IndicadorController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/com-cotacoes")
+    public List<IndicadorComCotacoesDTO> listarComCotacoes() {
+        List<Indicador> indicadores = repository.findAll();
+
+        return indicadores.stream().map(indicador -> {
+            IndicadorComCotacoesDTO dto = new IndicadorComCotacoesDTO();
+            dto.setId(indicador.getId());
+            dto.setNome(indicador.getNome());
+            dto.setSigla(indicador.getSigla());
+
+            List<CotacaoDTO> cotacoesDTO = indicador.getCotacoes().stream().map(c -> {
+                CotacaoDTO cotDto = new CotacaoDTO();
+                cotDto.setData(c.getData());
+                cotDto.setValor(java.math.BigDecimal.valueOf(c.getValor()));
+                return cotDto;
+            }).toList();
+
+            dto.setCotacoes(cotacoesDTO);
+            return dto;
+        }).toList();
     }
 }
