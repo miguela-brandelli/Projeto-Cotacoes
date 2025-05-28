@@ -21,7 +21,6 @@ function App() {
     carregarIndicadores();
   }, []);
 
-  
 
   return (
     <div className="App">
@@ -30,6 +29,7 @@ function App() {
       <IndicadorForm onCadastro={() => carregarIndicadores()} />
       <IndicadorList indicadores={indicadores} />
       <CotacaoForm />
+      
     </div>
   )
 }

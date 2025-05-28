@@ -11,7 +11,7 @@ const IndicadorTabela = () => {
   }, []);
 
   const handleEditar = (indicadorId, cotacao) => {
-    // Aqui você pode abrir um modal ou formulário com os dados
+    
     console.log("Editar:", indicadorId, cotacao);
   };
 

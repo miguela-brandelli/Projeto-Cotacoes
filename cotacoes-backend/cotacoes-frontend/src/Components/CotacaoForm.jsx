@@ -7,24 +7,35 @@ export default function CotacaoForm() {
   const [data, setData] = useState('');
   const [indicadorId, setIndicadorId] = useState('');
 
+  // useEffect(() => {
+  //   axios.get('http://localhost:8080/indicadores')
+  //     .then(res => setIndicadores(res.data));
+  // }, []);
+
   useEffect(() => {
     axios.get('http://localhost:8080/indicadores')
-      .then(res => setIndicadores(res.data));
+      .then(res => {
+        console.log("Resposta da API:", res.data);
+        setIndicadores(res.data);
+      })
+      .catch(err => {
+        console.error("Erro ao buscar indicadores:", err);
+      });
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post('http://localhost:8080/cotacoes', {
-      valor,
-      data,
-      indicador: { id: indicadorId }
-    }).then(() => {
-      setValor('');
-      setData('');
-      setIndicadorId('');
-      alert("Cotação cadastrada!");
-    }).catch(err => console.error("Erro:", err));
-  };
+ const handleSubmit = (e) => {
+  e.preventDefault();
+  axios.post('http://localhost:8080/cotacoes', {
+    valor: parseFloat(valor),
+    data,
+    indicadorId: parseInt(indicadorId)
+  }).then(() => {
+    setValor('');
+    setData('');
+    setIndicadorId('');
+    alert("Cotação cadastrada!");
+  }).catch(err => console.error("Erro:", err));
+};
 
   return (
     <form onSubmit={handleSubmit}>
@@ -33,7 +44,7 @@ export default function CotacaoForm() {
         <label>Indicador:</label>
         <select value={indicadorId} onChange={e => setIndicadorId(e.target.value)} required>
           <option value="">Selecione</option>
-          {indicadores.map(ind => (
+          {Array.isArray(indicadores) && indicadores.map(ind => (
             <option key={ind.id} value={ind.id}>
               {ind.nome} ({ind.sigla})
             </option>

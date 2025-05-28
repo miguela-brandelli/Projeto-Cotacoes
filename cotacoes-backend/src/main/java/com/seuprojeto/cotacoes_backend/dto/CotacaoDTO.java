@@ -4,13 +4,23 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class CotacaoDTO {
-    private LocalDate data;
     private BigDecimal valor;
+    private LocalDate data;
+    private Long indicadorId;
 
     public CotacaoDTO() {}
 
-    public CotacaoDTO(LocalDate data, BigDecimal valor) {
+    public CotacaoDTO(BigDecimal valor, LocalDate data, Long indicadorId) {
+        this.valor = valor;
         this.data = data;
+        this.indicadorId = indicadorId;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 
@@ -22,11 +32,11 @@ public class CotacaoDTO {
         this.data = data;
     }
 
-    public BigDecimal getValor() {
-        return valor;
+    public Long getIndicadorId() {
+        return indicadorId;
     }
 
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
+    public void setIndicadorId(Long indicadorId) {
+        this.indicadorId = indicadorId;
     }
 }

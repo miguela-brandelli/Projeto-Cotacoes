@@ -3,6 +3,8 @@ package com.seuprojeto.cotacoes_backend.model;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Cotacao {
 
@@ -14,6 +16,7 @@ public class Cotacao {
     private LocalDate data;
 
     @ManyToOne
+    @JsonIgnore // Evita a serialização circular
     @JoinColumn(name = "indicador_id")
     private Indicador indicador;
 

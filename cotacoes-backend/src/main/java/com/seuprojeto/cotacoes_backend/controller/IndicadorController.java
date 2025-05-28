@@ -22,7 +22,7 @@ public class IndicadorController {
 
     // GET - Listar todos os indicadores
     @GetMapping
-    public List<Indicador> listarTodos() {
+    public List<Indicador> getIndicadores() {
         return repository.findAll();
     }
 
