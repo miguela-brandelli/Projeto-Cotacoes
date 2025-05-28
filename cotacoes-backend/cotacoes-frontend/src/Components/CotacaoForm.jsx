@@ -23,22 +23,22 @@ export default function CotacaoForm() {
       });
   }, []);
 
- const handleSubmit = (e) => {
-  e.preventDefault();
-  axios.post('http://localhost:8080/cotacoes', {
-    valor: parseFloat(valor),
-    data,
-    indicadorId: parseInt(indicadorId)
-  }).then(() => {
-    setValor('');
-    setData('');
-    setIndicadorId('');
-    alert("Cotação cadastrada!");
-  }).catch(err => console.error("Erro:", err));
-};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post('http://localhost:8080/cotacoes', {
+      valor: parseFloat(valor),
+      data,
+      indicadorId: parseInt(indicadorId)
+    }).then(() => {
+      setValor('');
+      setData('');
+      setIndicadorId('');
+      alert("Cotação cadastrada!");
+    }).catch(err => console.error("Erro:", err));
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="formulario">
       <h2>Cadastrar Cotação</h2>
       <div>
         <label>Indicador:</label>

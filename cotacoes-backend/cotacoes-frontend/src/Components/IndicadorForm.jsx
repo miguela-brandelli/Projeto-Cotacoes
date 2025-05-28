@@ -23,25 +23,15 @@ export default function IndicadorForm({ onCadastro }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
+    <form onSubmit={handleSubmit} className="formulario">
       <h2>Cadastrar Indicador:</h2>
       <div>
-        <label>Nome: </label>
-        <input
-          type="text"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-          required
-        />
+        <label>Nome:</label>
+        <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} required />
       </div>
       <div>
-        <label>Sigla: </label>
-        <input
-          type="text"
-          value={sigla}
-          onChange={(e) => setSigla(e.target.value)}
-          required
-        />
+        <label>Sigla:</label>
+        <input type="text" value={sigla} onChange={(e) => setSigla(e.target.value)} required />
       </div>
       <button type="submit">Cadastrar</button>
     </form>

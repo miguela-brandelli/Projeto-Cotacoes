@@ -1,45 +1,37 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const IndicadorTabela = () => {
-  const [dados, setDados] = useState([]);
 
-  useEffect(() => {
-    axios.get("http://localhost:8080/indicadores-com-cotacoes")
-      .then(res => setDados(res.data))
-      .catch(err => console.error("Erro ao buscar dados", err));
-  }, []);
-
+const IndicadorTabela = ({ indicadores }) => {
   const handleEditar = (indicadorId, cotacao) => {
-    
     console.log("Editar:", indicadorId, cotacao);
   };
 
   return (
-    <div className="p-6 text-white">
-      <h2 className="text-xl font-bold mb-4">Indicadores e Cotações</h2>
-      <table className="w-full table-auto border-collapse border border-gray-500">
+    <div className="tabela-container">
+      <h2>Indicadores e Cotações Cadastrados:</h2>
+      <table className="tabela">
         <thead>
-          <tr className="bg-gray-700">
-            <th className="border px-4 py-2">Indicador</th>
-            <th className="border px-4 py-2">Sigla</th>
-            <th className="border px-4 py-2">Data</th>
-            <th className="border px-4 py-2">Valor</th>
-            <th className="border px-4 py-2">Ações</th>
+          <tr>
+            <th>Indicador</th>
+            <th>Sigla</th>
+            <th>Data</th>
+            <th>Valor</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          {dados.map((indicador, i) =>
+          {indicadores.map((indicador, i) =>
             indicador.cotacoes.map((cotacao, j) => (
-              <tr key={`${i}-${j}`} className="bg-gray-800">
-                <td className="border px-4 py-2">{indicador.nome}</td>
-                <td className="border px-4 py-2">{indicador.sigla}</td>
-                <td className="border px-4 py-2">{cotacao.data}</td>
-                <td className="border px-4 py-2">R$ {cotacao.valor}</td>
-                <td className="border px-4 py-2">
+              <tr key={`${i}-${j}`}>
+                <td>{indicador.nome}</td>
+                <td>{indicador.sigla}</td>
+                <td>{cotacao.data}</td>
+                <td>R$ {cotacao.valor}</td>
+                <td>
                   <button
                     onClick={() => handleEditar(indicador.id, cotacao)}
-                    className="bg-blue-500 text-white px-3 py-1 rounded"
+                    className="botao-editar"
                   >
                     Editar
                   </button>
