@@ -1,10 +1,28 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
+import EditarCotacaoModal from './EditarCotacaoModal';
 
+const IndicadoresTabela = ({ indicadores }) => {
+  const [modalAberto, setModalAberto] = useState(false);
+  const [cotacaoSelecionada, setCotacaoSelecionada] = useState(null);
 
-const IndicadorTabela = ({ indicadores }) => {
   const handleEditar = (indicadorId, cotacao) => {
-    console.log("Editar:", indicadorId, cotacao);
+  const cotacaoComId = {
+    ...cotacao,
+    indicadorId,
+  };
+
+  setCotacaoSelecionada(cotacaoComId);
+  setModalAberto(true);
+};
+
+
+  const fecharModal = () => {
+    setModalAberto(false);
+    setCotacaoSelecionada(null);
+  };
+
+  const recarregarPagina = () => {
+    window.location.reload();
   };
 
   return (
@@ -28,12 +46,15 @@ const IndicadorTabela = ({ indicadores }) => {
                 <td>{indicador.sigla}</td>
                 <td>{cotacao.data}</td>
                 <td>R$ {cotacao.valor}</td>
-                <td>
+                <td style={{ display: 'flex', gap: '6px' }}>
                   <button
                     onClick={() => handleEditar(indicador.id, cotacao)}
                     className="botao-editar"
                   >
                     Editar
+                  </button>
+                  <button className="botao-editar" disabled>
+                    Gráfico
                   </button>
                 </td>
               </tr>
@@ -41,8 +62,16 @@ const IndicadorTabela = ({ indicadores }) => {
           )}
         </tbody>
       </table>
+
+      {modalAberto && (
+        <EditarCotacaoModal
+          cotacao={cotacaoSelecionada}
+          onClose={fecharModal}
+          onSalvar={recarregarPagina}
+        />
+      )}
     </div>
   );
 };
 
-export default IndicadorTabela;
+export default IndicadoresTabela;
