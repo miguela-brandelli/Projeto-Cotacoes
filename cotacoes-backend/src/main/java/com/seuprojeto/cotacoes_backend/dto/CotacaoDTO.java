@@ -2,12 +2,16 @@ package com.seuprojeto.cotacoes_backend.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 public class CotacaoDTO {
     private Long id; 
     private BigDecimal valor;
     private LocalDate data;
     private Long indicadorId;
+
+    // NOVO: Lista de históricos
+    private List<CotacaoHistoricoDTO> historico;
 
     public CotacaoDTO() {}
 
@@ -49,5 +53,14 @@ public class CotacaoDTO {
 
     public void setIndicadorId(Long indicadorId) {
         this.indicadorId = indicadorId;
+    }
+
+    // NOVOS GETTERS & SETTERS para histórico
+    public List<CotacaoHistoricoDTO> getHistorico() {
+        return historico;
+    }
+
+    public void setHistorico(List<CotacaoHistoricoDTO> historico) {
+        this.historico = historico;
     }
 }

@@ -2,6 +2,8 @@ package com.seuprojeto.cotacoes_backend.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -13,12 +15,16 @@ public class Cotacao {
     private Long id;
 
     private Double valor;
+
     private LocalDate data;
 
     @ManyToOne
     @JsonIgnore // Evita a serialização circular
     @JoinColumn(name = "indicador_id")
     private Indicador indicador;
+
+    @OneToMany(mappedBy = "cotacao", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CotacaoHistorico> historicos = new ArrayList<>();
 
     // Getters e Setters
 
@@ -48,5 +54,13 @@ public class Cotacao {
 
     public void setIndicador(Indicador indicador) {
         this.indicador = indicador;
+    }
+
+    public List<CotacaoHistorico> getHistoricos() {
+        return historicos;
+    }
+
+    public void setHistoricos(List<CotacaoHistorico> historicos) {
+        this.historicos = historicos;
     }
 }

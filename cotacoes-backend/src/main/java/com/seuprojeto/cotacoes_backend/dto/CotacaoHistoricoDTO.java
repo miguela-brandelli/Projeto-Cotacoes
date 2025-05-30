@@ -1,38 +1,13 @@
-package com.seuprojeto.cotacoes_backend.model;
+package com.seuprojeto.cotacoes_backend.dto;
 
-import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity
-public class CotacaoHistorico {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "cotacao_id")
-    private Cotacao cotacao;
-
+public class CotacaoHistoricoDTO {
     private BigDecimal valorAntigo;
     private LocalDate dataAntiga;
     private LocalDateTime dataAlteracao;
-
-    // Getters e Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public Cotacao getCotacao() {
-        return cotacao;
-    }
-
-    public void setCotacao(Cotacao cotacao) {
-        this.cotacao = cotacao;
-    }
 
     public BigDecimal getValorAntigo() {
         return valorAntigo;

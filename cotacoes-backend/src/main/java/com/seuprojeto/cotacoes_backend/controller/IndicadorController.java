@@ -1,16 +1,19 @@
 package com.seuprojeto.cotacoes_backend.controller;
 
+import com.seuprojeto.cotacoes_backend.dto.CotacaoDTO;
+import com.seuprojeto.cotacoes_backend.dto.CotacaoHistoricoDTO;
+import com.seuprojeto.cotacoes_backend.dto.IndicadorComCotacoesDTO;
+// import com.seuprojeto.cotacoes_backend.model.CotacaoHistorico;
 import com.seuprojeto.cotacoes_backend.model.Indicador;
 import com.seuprojeto.cotacoes_backend.repository.IndicadorRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.seuprojeto.cotacoes_backend.dto.CotacaoDTO;
-import com.seuprojeto.cotacoes_backend.dto.IndicadorComCotacoesDTO;
-// import com.seuprojeto.cotacoes_backend.model.Cotacao;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/indicadores")
@@ -20,13 +23,11 @@ public class IndicadorController {
     @Autowired
     private IndicadorRepository repository;
 
-    // GET - Listar todos os indicadores
     @GetMapping
     public List<Indicador> getIndicadores() {
         return repository.findAll();
     }
 
-    // GET - Buscar um indicador por ID
     @GetMapping("/{id}")
     public ResponseEntity<Indicador> buscarPorId(@PathVariable Long id) {
         Optional<Indicador> indicador = repository.findById(id);
@@ -34,13 +35,11 @@ public class IndicadorController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // POST - Criar um novo indicador
     @PostMapping
     public Indicador criar(@RequestBody Indicador indicador) {
         return repository.save(indicador);
     }
 
-    // PUT - Atualizar um indicador existente
     @PutMapping("/{id}")
     public ResponseEntity<Indicador> atualizar(@PathVariable Long id, @RequestBody Indicador dadosAtualizados) {
         return repository.findById(id)
@@ -51,7 +50,6 @@ public class IndicadorController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // DELETE - Remover um indicador
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         if (repository.existsById(id)) {
@@ -73,10 +71,22 @@ public class IndicadorController {
 
             List<CotacaoDTO> cotacoesDTO = indicador.getCotacoes().stream().map(c -> {
                 CotacaoDTO cotDto = new CotacaoDTO();
-                cotDto.setId(c.getId()); 
+                cotDto.setId(c.getId());
                 cotDto.setData(c.getData());
                 cotDto.setValor(java.math.BigDecimal.valueOf(c.getValor()));
-                cotDto.setIndicadorId(indicador.getId()); 
+                cotDto.setIndicadorId(indicador.getId());
+
+                // Preenchendo o histórico (NOVO)
+                List<CotacaoHistoricoDTO> historicoDTOs = c.getHistoricos().stream().map(h -> {
+                    CotacaoHistoricoDTO histDto = new CotacaoHistoricoDTO();
+                    histDto.setDataAntiga(h.getDataAntiga());
+                    histDto.setValorAntigo(h.getValorAntigo());
+                    histDto.setDataAlteracao(h.getDataAlteracao());
+                    return histDto;
+                }).collect(Collectors.toList());
+
+                cotDto.setHistorico(historicoDTOs);
+
                 return cotDto;
             }).toList();
 
@@ -84,5 +94,4 @@ public class IndicadorController {
             return dto;
         }).toList();
     }
-
 }

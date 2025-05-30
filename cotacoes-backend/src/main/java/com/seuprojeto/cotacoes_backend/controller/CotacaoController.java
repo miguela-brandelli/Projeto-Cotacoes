@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
+// import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -47,31 +47,33 @@ public class CotacaoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> editarCotacao(@PathVariable Long id, @RequestBody CotacaoDTO dto) {
+    public ResponseEntity<?> atualizarCotacao(@PathVariable Long id, @RequestBody CotacaoDTO dto) {
         Optional<Cotacao> opt = cotacaoRepository.findById(id);
+        Optional<Indicador> indicadorOpt = indicadorRepository.findById(dto.getIndicadorId());
+
         if (opt.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.badRequest().body("Cotação não encontrada.");
+        }
+        if (indicadorOpt.isEmpty()) {
+            return ResponseEntity.badRequest().body("Indicador não encontrado.");
         }
 
         Cotacao cotacao = opt.get();
 
+        // Salvar histórico
         CotacaoHistorico historico = new CotacaoHistorico();
         historico.setCotacao(cotacao);
         historico.setValorAntigo(BigDecimal.valueOf(cotacao.getValor()));
         historico.setDataAntiga(cotacao.getData());
         historico.setDataAlteracao(LocalDateTime.now());
         cotacaoHistoricoRepository.save(historico);
-        
-        cotacao.setValor(dto.getValor() != null ? dto.getValor().doubleValue() : null);
+
+        // Atualizar cotação
+        cotacao.setValor(dto.getValor().doubleValue());
         cotacao.setData(dto.getData());
+        cotacao.setIndicador(indicadorOpt.get());
 
         cotacaoRepository.save(cotacao);
-
         return ResponseEntity.ok().build();
-    }
-
-    @GetMapping
-    public List<Cotacao> listarTodas() {
-        return cotacaoRepository.findAll();
     }
 }
