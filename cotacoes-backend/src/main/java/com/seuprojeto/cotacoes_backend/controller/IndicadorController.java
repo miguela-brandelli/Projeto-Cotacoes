@@ -73,8 +73,10 @@ public class IndicadorController {
 
             List<CotacaoDTO> cotacoesDTO = indicador.getCotacoes().stream().map(c -> {
                 CotacaoDTO cotDto = new CotacaoDTO();
+                cotDto.setId(c.getId()); 
                 cotDto.setData(c.getData());
                 cotDto.setValor(java.math.BigDecimal.valueOf(c.getValor()));
+                cotDto.setIndicadorId(indicador.getId()); 
                 return cotDto;
             }).toList();
 
@@ -82,4 +84,5 @@ public class IndicadorController {
             return dto;
         }).toList();
     }
+
 }

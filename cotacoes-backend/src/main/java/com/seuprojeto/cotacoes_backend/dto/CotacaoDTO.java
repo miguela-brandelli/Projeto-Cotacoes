@@ -4,16 +4,27 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class CotacaoDTO {
+    private Long id; 
     private BigDecimal valor;
     private LocalDate data;
     private Long indicadorId;
 
     public CotacaoDTO() {}
 
-    public CotacaoDTO(BigDecimal valor, LocalDate data, Long indicadorId) {
+    public CotacaoDTO(Long id, BigDecimal valor, LocalDate data, Long indicadorId) {
+        this.id = id;
         this.valor = valor;
         this.data = data;
         this.indicadorId = indicadorId;
+    }
+
+    // GETTERS & SETTERS
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public BigDecimal getValor() {
