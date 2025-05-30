@@ -23,7 +23,21 @@ html, body {
 .titulo-principal {
   text-align: center;
   font-size: 32px;
-  color: #a0fca0;
+  color: #f0f0f0;
+  margin-bottom: 25px;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  width: 150px;
+  height: auto;
+}
+
+.subtitulo-principal {
+  text-align: center;
+  font-size: 18px;
+  color: #f0f0f0;
   margin-bottom: 20px;
 }
 
@@ -64,7 +78,7 @@ html, body {
 .formulario button {
   width: 100%;
   padding: 10px;
-  background-color: #4caf50;
+  background-color: #33b081;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -72,7 +86,7 @@ html, body {
 }
 
 .formulario button:hover {
-  background-color: #45a049;
+  background-color: #148d4a;
 }
 
 .tabela-container {

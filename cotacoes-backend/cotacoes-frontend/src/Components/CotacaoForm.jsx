@@ -39,7 +39,7 @@ export default function CotacaoForm() {
 
   return (
     <form onSubmit={handleSubmit} className="formulario">
-      <h2>Cadastrar Cotação</h2>
+      <h2>Cadastrar Cotação:</h2>
       <div>
         <label>Indicador:</label>
         <select value={indicadorId} onChange={e => setIndicadorId(e.target.value)} required>
