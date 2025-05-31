@@ -13,12 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-// import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/cotacoes")
-@CrossOrigin(origins = "http://localhost:5173") // ajuste conforme sua porta
+@CrossOrigin(origins = "http://localhost:5173") 
 public class CotacaoController {
 
     @Autowired
@@ -60,7 +59,7 @@ public class CotacaoController {
 
         Cotacao cotacao = opt.get();
 
-        // Salvar histórico
+        
         CotacaoHistorico historico = new CotacaoHistorico();
         historico.setCotacao(cotacao);
         historico.setValorAntigo(BigDecimal.valueOf(cotacao.getValor()));
@@ -68,7 +67,7 @@ public class CotacaoController {
         historico.setDataAlteracao(LocalDateTime.now());
         cotacaoHistoricoRepository.save(historico);
 
-        // Atualizar cotação
+        
         cotacao.setValor(dto.getValor().doubleValue());
         cotacao.setData(dto.getData());
         cotacao.setIndicador(indicadorOpt.get());

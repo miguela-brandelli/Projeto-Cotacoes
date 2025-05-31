@@ -10,7 +10,6 @@ public class CotacaoDTO {
     private LocalDate data;
     private Long indicadorId;
 
-    // NOVO: Lista de históricos
     private List<CotacaoHistoricoDTO> historico;
 
     public CotacaoDTO() {}
@@ -22,7 +21,6 @@ public class CotacaoDTO {
         this.indicadorId = indicadorId;
     }
 
-    // GETTERS & SETTERS
     public Long getId() {
         return id;
     }
@@ -55,7 +53,6 @@ public class CotacaoDTO {
         this.indicadorId = indicadorId;
     }
 
-    // NOVOS GETTERS & SETTERS para histórico
     public List<CotacaoHistoricoDTO> getHistorico() {
         return historico;
     }

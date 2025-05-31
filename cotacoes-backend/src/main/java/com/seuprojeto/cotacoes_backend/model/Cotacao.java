@@ -19,14 +19,13 @@ public class Cotacao {
     private LocalDate data;
 
     @ManyToOne
-    @JsonIgnore // Evita a serialização circular
+    @JsonIgnore 
     @JoinColumn(name = "indicador_id")
     private Indicador indicador;
 
     @OneToMany(mappedBy = "cotacao", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CotacaoHistorico> historicos = new ArrayList<>();
 
-    // Getters e Setters
 
     public Long getId() {
         return id;

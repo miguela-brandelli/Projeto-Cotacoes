@@ -1,5 +1,4 @@
 import './App.css';
-// import IndicadorList from './Components/IndicadorList';
 import IndicadorForm from './Components/IndicadorForm';
 import CotacaoForm from './Components/CotacaoForm';
 import IndicadoresTabela from './Components/IndicadoresTabela';

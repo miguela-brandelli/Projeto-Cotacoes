@@ -5,17 +5,17 @@ import {
 import './GraficoCotacaoModal.css';
 
 const GraficoCotacaoModal = ({ cotacoes, indicadorNome, onClose }) => {
-  // Mescla cotações atuais + históricas
+
   const dadosCompletos = [];
 
   cotacoes.forEach(cotacao => {
-    // Atual
+   
     dadosCompletos.push({
       data: cotacao.data,
       valor: cotacao.valor
     });
 
-    // Históricos
+   
     if (cotacao.historico) {
       cotacao.historico.forEach(hist => {
         dadosCompletos.push({
@@ -26,7 +26,7 @@ const GraficoCotacaoModal = ({ cotacoes, indicadorNome, onClose }) => {
     }
   });
 
-  // Ordenar por data
+  
   const dadosOrdenados = dadosCompletos.sort((a, b) => new Date(a.data) - new Date(b.data));
 
   return (

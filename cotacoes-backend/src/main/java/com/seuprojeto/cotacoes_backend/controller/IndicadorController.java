@@ -3,7 +3,6 @@ package com.seuprojeto.cotacoes_backend.controller;
 import com.seuprojeto.cotacoes_backend.dto.CotacaoDTO;
 import com.seuprojeto.cotacoes_backend.dto.CotacaoHistoricoDTO;
 import com.seuprojeto.cotacoes_backend.dto.IndicadorComCotacoesDTO;
-// import com.seuprojeto.cotacoes_backend.model.CotacaoHistorico;
 import com.seuprojeto.cotacoes_backend.model.Indicador;
 import com.seuprojeto.cotacoes_backend.repository.IndicadorRepository;
 
@@ -17,7 +16,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/indicadores")
-// @CrossOrigin(origins = "http://localhost:5173")
 public class IndicadorController {
 
     @Autowired
@@ -76,7 +74,6 @@ public class IndicadorController {
                 cotDto.setValor(java.math.BigDecimal.valueOf(c.getValor()));
                 cotDto.setIndicadorId(indicador.getId());
 
-                // Preenchendo o histórico (NOVO)
                 List<CotacaoHistoricoDTO> historicoDTOs = c.getHistoricos().stream().map(h -> {
                     CotacaoHistoricoDTO histDto = new CotacaoHistoricoDTO();
                     histDto.setDataAntiga(h.getDataAntiga());

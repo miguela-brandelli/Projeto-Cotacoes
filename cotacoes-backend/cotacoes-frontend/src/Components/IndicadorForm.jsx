@@ -16,7 +16,7 @@ export default function IndicadorForm({ onCadastro }) {
 
       setNome('');
       setSigla('');
-      if (onCadastro) onCadastro(response.data); // Atualiza a lista se for passado por props
+      if (onCadastro) onCadastro(response.data); 
     } catch (error) {
       console.error("Erro ao cadastrar indicador:", error);
     }

@@ -1,5 +1,5 @@
 import React from "react";
-// import logo from "./cotacoes-backend/cotacoes-frontend/public/android-chrome-192x192.png"; // Substitua pelo caminho correto
+
 
 function Header() {
   return (
@@ -15,14 +15,14 @@ const styles = {
     display: "flex",
     alignItems: "center",
     padding: "10px 20px",
-    backgroundColor: "#000", // ou cor de fundo desejada
+    backgroundColor: "#000", 
   },
   logo: {
-    height: "40px", // ajuste o tamanho conforme o logo
+    height: "40px", 
     marginRight: "10px",
   },
   title: {
-    color: "#8aff00", // ou branco, se quiser seguir o exemplo da Datachamp
+    color: "#8aff00", 
     fontSize: "24px",
     fontWeight: "bold",
   },

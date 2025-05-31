@@ -18,7 +18,6 @@ public class Indicador {
     @OneToMany(mappedBy = "indicador", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Cotacao> cotacoes = new ArrayList<>();
 
-    // Getters e Setters
     public Long getId() { return id; }
 
     public void setId(Long id) { this.id = id; }
