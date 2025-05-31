@@ -52,7 +52,7 @@ html, body {
 .formulario {
   background-color: #1f1f1f;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 10px;
   width: 300px;
   box-shadow: 0 0 10px #000;
 }
@@ -68,8 +68,10 @@ html, body {
 .formulario input,
 .formulario select {
   width: 100%;
-  padding: 8px;
+  /* padding: 8px; */
+  padding: 10px 0px 10px 0px;
   border: none;
+  margin-right: 5px;
   border-radius: 4px;
   background-color: #2a2a2a;
   color: #fff;
