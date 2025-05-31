@@ -1,6 +1,40 @@
 import { useState } from 'react';
 import EditarCotacaoModal from './EditarCotacaoModal';
 import GraficoCotacaoModal from './GraficoCotacaoModal.jsx';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+import axios from 'axios';
+
+const excluirCotacao = (cotacaoId) => {
+  if (window.confirm("Tem certeza que deseja excluir esta cotação?")) {
+    axios.delete(`http://localhost:8080/cotacoes/${cotacaoId}`)
+      .then(() => {
+        alert("Cotação excluída!");
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.error("Erro ao excluir cotação:", err);
+        alert("Erro ao excluir cotação");
+      });
+  }
+};
+
+const exportarCotacaoParaPDF = (indicador, cotacao) => {
+  const doc = new jsPDF();
+
+  doc.text(`Cotação de ${indicador.nome} (${indicador.sigla})`, 10, 10);
+
+  autoTable(doc, {
+    startY: 20,
+    head: [['Data', 'Valor']],
+    body: [[
+      new Date(cotacao.data).toLocaleDateString('pt-BR'),
+      `R$ ${cotacao.valor}`
+    ]]
+  });
+
+  doc.save(`cotacao-${indicador.sigla}.pdf`);
+};
 
 const formatarData = (isoDate) => {
   return new Date(isoDate).toLocaleDateString('pt-BR');
@@ -72,6 +106,19 @@ const IndicadoresTabela = ({ indicadores }) => {
                     className="botao-editar"
                   >
                     Gráfico
+                  </button>
+                  <button
+                    onClick={() => exportarCotacaoParaPDF(indicador, cotacao)}
+                    className="botao-editar"
+                  >
+                    Exportar
+                  </button>
+                  <button
+                    onClick={() => excluirCotacao(cotacao.id)}
+                    className="botao-editar"
+                    style={{ backgroundColor: '#f44336' }}
+                  >
+                    Excluir
                   </button>
                 </td>
               </tr>
