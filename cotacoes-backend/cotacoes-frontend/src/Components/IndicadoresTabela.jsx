@@ -2,6 +2,10 @@ import { useState } from 'react';
 import EditarCotacaoModal from './EditarCotacaoModal';
 import GraficoCotacaoModal from './GraficoCotacaoModal.jsx';
 
+const formatarData = (isoDate) => {
+  return new Date(isoDate).toLocaleDateString('pt-BR');
+};
+
 const IndicadoresTabela = ({ indicadores }) => {
   const [modalAberto, setModalAberto] = useState(false);
   const [cotacaoSelecionada, setCotacaoSelecionada] = useState(null);
@@ -54,7 +58,7 @@ const IndicadoresTabela = ({ indicadores }) => {
               <tr key={`${i}-${j}`}>
                 <td>{indicador.nome}</td>
                 <td>{indicador.sigla}</td>
-                <td>{cotacao.data}</td>
+                <td>{formatarData(cotacao.data)}</td>
                 <td>R$ {cotacao.valor}</td>
                 <td style={{ display: 'flex', gap: '6px' }}>
                   <button
