@@ -1,17 +1,40 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import {
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+} from 'recharts';
 import './GraficoCotacaoModal.css';
 
 const GraficoCotacaoModal = ({ cotacoes, indicadorNome, onClose }) => {
-  
-  const dadosOrdenados = [...cotacoes].sort((a, b) => new Date(a.data) - new Date(b.data));
+  // Mescla cotações atuais + históricas
+  const dadosCompletos = [];
+
+  cotacoes.forEach(cotacao => {
+    // Atual
+    dadosCompletos.push({
+      data: cotacao.data,
+      valor: cotacao.valor
+    });
+
+    // Históricos
+    if (cotacao.historico) {
+      cotacao.historico.forEach(hist => {
+        dadosCompletos.push({
+          data: hist.dataAntiga,
+          valor: hist.valorAntigo
+        });
+      });
+    }
+  });
+
+  // Ordenar por data
+  const dadosOrdenados = dadosCompletos.sort((a, b) => new Date(a.data) - new Date(b.data));
 
   return (
     <div className="modal-overlay">
       <div className="modal">
         <h2>Gráfico de {indicadorNome}</h2>
 
-        {cotacoes.length === 0 ? (
+        {dadosOrdenados.length === 0 ? (
           <p>Não há cotações disponíveis para este indicador.</p>
         ) : (
           <ResponsiveContainer width="100%" height={300}>

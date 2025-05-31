@@ -38,6 +38,7 @@ public class IndicadorService {
     public void init() {
         Indicador dolar = new Indicador();
         dolar.setNome("Dólar");
+        dolar.setSigla("USD");
         salvar(dolar); 
     }
 }
