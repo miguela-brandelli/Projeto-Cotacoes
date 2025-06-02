@@ -16,19 +16,20 @@ function App() {
   };
 
   const carregarIndicadoresComCotacoes = () => {
-  axios.get('http://localhost:8080/indicadores/com-cotacoes')
-    .then(res => {
-      console.log("Indicadores atualizados com cotações:", res.data);
-      setIndicadoresComCotacoes(res.data);
-    })
-    .catch(err => console.error(err));
-};
+    axios.get('http://localhost:8080/indicadores/com-cotacoes')
+      .then(res => {
+        console.log("Indicadores atualizados com cotações:", res.data);
+        setIndicadoresComCotacoes(res.data);
+      })
+      .catch(err => console.error(err));
+  };
 
   useEffect(() => {
     carregarIndicadores();
     carregarIndicadoresComCotacoes();
   }, []);
 
+  console.log(indicadoresComCotacoes)
   return (
     <div className="App">
       <img className="logo" src="/android-chrome-192x192.png" alt="Logo" />
@@ -40,7 +41,10 @@ function App() {
           carregarIndicadores();
           carregarIndicadoresComCotacoes();
         }} />
-        <CotacaoForm onCadastro={carregarIndicadoresComCotacoes} />
+        <CotacaoForm
+          indicadores={indicadores}
+          onCadastro={carregarIndicadoresComCotacoes}
+        />
       </div>
 
       <IndicadoresTabela indicadores={indicadoresComCotacoes} />

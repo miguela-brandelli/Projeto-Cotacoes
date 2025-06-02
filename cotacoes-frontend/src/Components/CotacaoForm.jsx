@@ -1,27 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
-export default function CotacaoForm({ onCadastro }) {
-  const [indicadores, setIndicadores] = useState([]);
+export default function CotacaoForm({ indicadores = [], onCadastro }) {
   const [valor, setValor] = useState('');
   const [data, setData] = useState('');
   const [indicadorId, setIndicadorId] = useState('');
-
-  // useEffect(() => {
-  //   axios.get('http://localhost:8080/indicadores')
-  //     .then(res => setIndicadores(res.data));
-  // }, []);
-
-  useEffect(() => {
-    axios.get('http://localhost:8080/indicadores')
-      .then(res => {
-        console.log("Resposta da API:", res.data);
-        setIndicadores(res.data);
-      })
-      .catch(err => {
-        console.error("Erro ao buscar indicadores:", err);
-      });
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,11 +17,11 @@ export default function CotacaoForm({ onCadastro }) {
       setData('');
       setIndicadorId('');
       alert("Cotação cadastrada!");
-      onCadastro();
-    }).catch(err => console.error("Erro:", err))
-      .finally(() => {
-        if (onCadastro) onCadastro();
-      });
+      if (onCadastro) onCadastro();
+    }).catch(err => {
+      console.error("Erro:", err);
+      alert("Erro ao cadastrar cotação.");
+    });
   };
 
   return (
@@ -57,11 +40,22 @@ export default function CotacaoForm({ onCadastro }) {
       </div>
       <div>
         <label>Data:</label>
-        <input type="date" value={data} onChange={e => setData(e.target.value)} required />
+        <input
+          type="date"
+          value={data}
+          onChange={e => setData(e.target.value)}
+          required
+        />
       </div>
       <div>
         <label>Valor:</label>
-        <input type="number" step="0.01" value={valor} onChange={e => setValor(e.target.value)} required />
+        <input
+          type="number"
+          step="0.01"
+          value={valor}
+          onChange={e => setValor(e.target.value)}
+          required
+        />
       </div>
       <button type="submit">Cadastrar</button>
     </form>
