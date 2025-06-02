@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function CotacaoForm() {
+export default function CotacaoForm({ onCadastro }) {
   const [indicadores, setIndicadores] = useState([]);
   const [valor, setValor] = useState('');
   const [data, setData] = useState('');
@@ -34,7 +34,11 @@ export default function CotacaoForm() {
       setData('');
       setIndicadorId('');
       alert("Cotação cadastrada!");
-    }).catch(err => console.error("Erro:", err));
+      onCadastro();
+    }).catch(err => console.error("Erro:", err))
+      .finally(() => {
+        if (onCadastro) onCadastro();
+      });
   };
 
   return (

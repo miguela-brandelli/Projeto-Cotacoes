@@ -6,21 +6,20 @@ export default function IndicadorForm({ onCadastro }) {
   const [sigla, setSigla] = useState('');
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const response = await axios.post('http://localhost:8080/indicadores', {
-        nome,
-        sigla
-      });
-
-      setNome('');
-      setSigla('');
-      if (onCadastro) onCadastro(response.data); 
-    } catch (error) {
-      console.error("Erro ao cadastrar indicador:", error);
-    }
-  };
+  try {
+    const response = await axios.post('http://localhost:8080/indicadores', {
+      nome,
+      sigla
+    });
+    setNome('');
+    setSigla('');
+    if (onCadastro) onCadastro(); 
+  } catch (error) {
+    console.error("Erro ao cadastrar indicador:", error);
+  }
+};
 
   return (
     <form onSubmit={handleSubmit} className="formulario">

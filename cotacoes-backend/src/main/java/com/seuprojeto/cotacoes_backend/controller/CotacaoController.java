@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/cotacoes")
-@CrossOrigin(origins = "http://localhost:5173") 
+@CrossOrigin(origins = "http://localhost:5173")
 public class CotacaoController {
 
     @Autowired
@@ -59,7 +59,6 @@ public class CotacaoController {
 
         Cotacao cotacao = opt.get();
 
-        
         CotacaoHistorico historico = new CotacaoHistorico();
         historico.setCotacao(cotacao);
         historico.setValorAntigo(BigDecimal.valueOf(cotacao.getValor()));
@@ -67,12 +66,21 @@ public class CotacaoController {
         historico.setDataAlteracao(LocalDateTime.now());
         cotacaoHistoricoRepository.save(historico);
 
-        
         cotacao.setValor(dto.getValor().doubleValue());
         cotacao.setData(dto.getData());
         cotacao.setIndicador(indicadorOpt.get());
 
         cotacaoRepository.save(cotacao);
         return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluirCotacao(@PathVariable Long id) {
+        if (cotacaoRepository.existsById(id)) {
+            cotacaoRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
