@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import EditarCotacaoModal from './EditarCotacaoModal';
+import EditarCotacaoModal from './EditarCotacaoModal.jsx';
 import GraficoCotacaoModal from './GraficoCotacaoModal.jsx';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
