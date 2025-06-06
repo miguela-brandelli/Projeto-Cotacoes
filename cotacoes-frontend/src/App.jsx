@@ -2,6 +2,7 @@ import './App.css';
 import IndicadorForm from './Components/IndicadorForm';
 import CotacaoForm from './Components/CotacaoForm';
 import IndicadoresTabela from './Components/IndicadoresTabela';
+import CotacaoAtual from './Components/CotacaoAtual';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -35,6 +36,8 @@ function App() {
       <img className="logo" src="/android-chrome-192x192.png" alt="Logo" />
       <h1 className="titulo-principal">MonValue</h1>
       <h4 className="subtitulo-principal">O valor da informação certa, na hora certa.</h4>
+
+      <CotacaoAtual />
 
       <div className="formulario-container">
         <IndicadorForm onCadastro={() => {
