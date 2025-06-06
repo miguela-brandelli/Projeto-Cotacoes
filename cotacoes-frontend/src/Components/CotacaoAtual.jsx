@@ -40,14 +40,19 @@ const CotacaoAtual = () => {
 
     return (
         <div className="cotacao-container">
-            <label htmlFor="seletor-moeda">Escolha: </label>
-            <select id="seletor-moeda" value={opcaoSelecionada} onChange={(e) => setOpcaoSelecionada(e.target.value)}>
-                <option value="usd">Dólar</option>
-                <option value="eur">Euro</option>
-                <option value="bitcoin">Bitcoin</option>
-                <option value="ethereum">Ethereum</option>
-                <option value="gold">Ouro</option>
-            </select>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <h3 style={{ marginBottom: '10px', color: '#81fca6' }}>
+                    Indicadores em Tempo Real
+                </h3>
+                <label htmlFor="seletor-moeda">Escolha: </label>
+                <select id="seletor-moeda" value={opcaoSelecionada} onChange={(e) => setOpcaoSelecionada(e.target.value)}>
+                    <option value="usd">Dólar</option>
+                    <option value="eur">Euro</option>
+                    <option value="bitcoin">Bitcoin</option>
+                    <option value="ethereum">Ethereum</option>
+                    <option value="gold">Ouro</option>
+                </select>
+            </div>
             {cotacao !== null ? (
                 <span><strong>R$ {cotacao}</strong></span>
             ) : (
