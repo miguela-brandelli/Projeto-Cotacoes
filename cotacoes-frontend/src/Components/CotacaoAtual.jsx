@@ -8,10 +8,18 @@ const CotacaoAtual = () => {
 
     const opcoes = [
         { label: 'Dólar Americano (USD)', id: 'USD-BRL', api: 'moeda' },
+        { label: 'Dólar Canadense (CAD)', id: 'CAD-BRL', api: 'moeda' },
+        { label: 'Dólar Australiano (AUD)', id: 'AUD-BRL', api: 'moeda' }, 
         { label: 'Euro (EUR)', id: 'EUR-BRL', api: 'moeda' },
+        { label: 'Libra Esterlina (GBP)', id: 'GBP-BRL', api: 'moeda' },
+        { label: 'Iene Japonês (JPY)', id: 'JPY-BRL', api: 'moeda' },
+        { label: 'Yuan (CNY)', id: 'CNY-BRL', api: 'moeda' },
+        {label: 'Rublo Russo (RUB)', id: 'RUB-BRL', api: 'moeda' },
+        // { label: 'Franco Suíço (CHF)', id: 'CHF-BRL', api: 'moeda' },
         { label: 'Bitcoin (BTC)', id: 'bitcoin', api: 'cripto' },
         { label: 'Ethereum (ETH)', id: 'ethereum', api: 'cripto' },
-        { label: 'Ouro (GOLD)', id: 'gold', api: 'cripto' },
+        
+
     ];
 
     useEffect(() => {
@@ -44,13 +52,18 @@ const CotacaoAtual = () => {
                 <h3 style={{ marginBottom: '10px', color: '#81fca6' }}>
                     Indicadores em Tempo Real
                 </h3>
-                <label htmlFor="seletor-moeda">Escolha: </label>
                 <select id="seletor-moeda" value={opcaoSelecionada} onChange={(e) => setOpcaoSelecionada(e.target.value)}>
-                    <option value="usd">Dólar</option>
+                    <option value="usd">Dólar Americano</option>
+                    <option value="cad">Dólar Canadense</option>
+                    <option value="aud">Dólar Australiano</option>
                     <option value="eur">Euro</option>
+                    <option value="gbp">Libra Esterlina</option>
+                    <option value="jpy">Iene Japonês</option>
+                    <option value="cny">Yuan Chinês</option>
+                    <option value="rub">Rublo Russo</option>
                     <option value="bitcoin">Bitcoin</option>
                     <option value="ethereum">Ethereum</option>
-                    <option value="gold">Ouro</option>
+                    
                 </select>
             </div>
             {cotacao !== null ? (

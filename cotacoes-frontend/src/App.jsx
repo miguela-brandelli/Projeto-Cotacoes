@@ -38,12 +38,14 @@ function App() {
       <h4 className="subtitulo-principal">O valor da informação certa, na hora certa.</h4>
 
       <CotacaoAtual />
+      <hr className="divisor" />
+      <h2 className="titulo-secundario">Minhas Cotações e Indicadores</h2>
       <div className="formulario-container">
         <IndicadorForm onCadastro={() => {
           carregarIndicadores();
           carregarIndicadoresComCotacoes();
         }} />
-        
+
         <CotacaoForm
           indicadores={indicadores}
           onCadastro={carregarIndicadoresComCotacoes}
