@@ -2,22 +2,22 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const CotacaoAtual = () => {
+const CotacaoAtual = ({ onMoedaChange }) => {
     const [opcaoSelecionada, setOpcaoSelecionada] = useState('usd');
     const [cotacao, setCotacao] = useState(null);
 
     const opcoes = [
         { label: 'Dólar Americano (USD)', id: 'USD-BRL', api: 'moeda' },
         { label: 'Dólar Canadense (CAD)', id: 'CAD-BRL', api: 'moeda' },
-        { label: 'Dólar Australiano (AUD)', id: 'AUD-BRL', api: 'moeda' }, 
+        { label: 'Dólar Australiano (AUD)', id: 'AUD-BRL', api: 'moeda' },
         { label: 'Euro (EUR)', id: 'EUR-BRL', api: 'moeda' },
         { label: 'Libra Esterlina (GBP)', id: 'GBP-BRL', api: 'moeda' },
         { label: 'Iene Japonês (JPY)', id: 'JPY-BRL', api: 'moeda' },
         { label: 'Yuan (CNY)', id: 'CNY-BRL', api: 'moeda' },
-        {label: 'Rublo Russo (RUB)', id: 'RUB-BRL', api: 'moeda' },
+        { label: 'Rublo Russo (RUB)', id: 'RUB-BRL', api: 'moeda' },
         { label: 'Bitcoin (BTC)', id: 'bitcoin', api: 'cripto' },
         { label: 'Ethereum (ETH)', id: 'ethereum', api: 'cripto' },
-        {label: 'Tether (USDT)', id: 'tether', api: 'cripto' },
+        { label: 'Tether (USDT)', id: 'tether', api: 'cripto' },
     ];
 
     useEffect(() => {
@@ -35,6 +35,9 @@ const CotacaoAtual = () => {
                     const res = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${selecionado.id}&vs_currencies=brl`);
                     setCotacao(parseFloat(res.data[selecionado.id].brl).toFixed(2));
                 }
+                if (onMoedaChange) {
+                    onMoedaChange(opcaoSelecionada.toUpperCase());
+                }
             } catch (error) {
                 console.error('Erro ao buscar cotação:', error);
                 setCotacao(null);
@@ -42,7 +45,7 @@ const CotacaoAtual = () => {
         };
 
         buscarCotacao();
-    }, [opcaoSelecionada]);
+    }, [opcaoSelecionada, onMoedaChange]);
 
     return (
         <div className="cotacao-container">
