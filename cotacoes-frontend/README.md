@@ -10,6 +10,7 @@ Aplicação construída em **ReactJS**, com CSS puro. Permite:
 - Cadastrar cotações para os indicadores
 - Visualizar e editar cotações
 - Visualizar gráficos de evolução
+- Visualizar cotações em tempo real com gráfico
 - Exportar cotações em PDF
 - Excluir cotações
 

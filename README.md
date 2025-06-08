@@ -5,6 +5,7 @@ MonValue é uma aplicação web desenvolvida para o gerenciamento de cotações 
 ## Funcionalidades
 
 - ✅ Cadastro de indicadores financeiros
+- ✅ Vizualização das cotações dos principais indicadores em tempo real
 - ✅ Registro de cotações com valor e data
 - ✅ Edição de cotações com armazenamento de histórico
 - ✅ Visualização de gráfico de evolução das cotações
