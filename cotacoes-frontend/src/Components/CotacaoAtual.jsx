@@ -62,9 +62,9 @@ const CotacaoAtual = ({ onMoedaChange }) => {
                     <option value="jpy">Iene Japonês</option>
                     <option value="cny">Yuan Chinês</option>
                     <option value="rub">Rublo Russo</option>
-                    <option value="bitcoin">Bitcoin</option>
+                    {/* <option value="bitcoin">Bitcoin</option>
                     <option value="ethereum">Ethereum</option>
-                    <option value="tether">Tether</option>
+                    <option value="tether">Tether</option> */}
                 </select>
             </div>
             {cotacao !== null ? (

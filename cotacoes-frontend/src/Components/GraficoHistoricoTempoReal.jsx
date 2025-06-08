@@ -23,7 +23,6 @@ const GraficoHistoricoTempoReal = ({ moeda }) => {
       try {
         let url = '';
 
-        // Tratamento separado entre moedas FIAT e criptomoedas
         if (["USD", "CAD", "AUD", "EUR", "GBP", "JPY", "CNY", "RUB"].includes(moeda)) {
           url = `https://economia.awesomeapi.com.br/json/daily/${moeda}-BRL/15`;
           const res = await fetch(url);
@@ -34,7 +33,7 @@ const GraficoHistoricoTempoReal = ({ moeda }) => {
           }));
           setDados(convertidos);
         } else {
-          // Para criptomoedas com CoinGecko
+
           const mapeamento = {
             BTC: 'bitcoin',
             ETH: 'ethereum',
