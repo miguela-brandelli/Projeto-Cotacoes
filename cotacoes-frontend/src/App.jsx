@@ -3,12 +3,15 @@ import IndicadorForm from './Components/IndicadorForm';
 import CotacaoForm from './Components/CotacaoForm';
 import IndicadoresTabela from './Components/IndicadoresTabela';
 import CotacaoAtual from './Components/CotacaoAtual';
+import GraficoHistoricoTempoReal from './Components/GraficoHistoricoTempoReal';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { LineChart } from 'recharts';
 
 function App() {
   const [indicadores, setIndicadores] = useState([]);
   const [indicadoresComCotacoes, setIndicadoresComCotacoes] = useState([]);
+  const [moedaSelecionada, setMoedaSelecionada] = useState('USD');
 
   const carregarIndicadores = () => {
     axios.get('http://localhost:8080/indicadores')
@@ -30,14 +33,19 @@ function App() {
     carregarIndicadoresComCotacoes();
   }, []);
 
-  console.log(indicadoresComCotacoes)
   return (
     <div className="App">
       <img className="logo" src="/android-chrome-192x192.png" alt="Logo" />
       <h1 className="titulo-principal">MonValue</h1>
       <h4 className="subtitulo-principal">O valor da informação certa, na hora certa.</h4>
 
-      <CotacaoAtual />
+      <div className="cotacoes-bloco-central">
+        <CotacaoAtual onMoedaChange={setMoedaSelecionada} />
+        <div className="grafico-box">
+          <GraficoHistoricoTempoReal moeda={moedaSelecionada} />
+        </div>
+      </div>
+
       <hr className="divisor" />
       <h2 className="titulo-secundario">Minhas Cotações e Indicadores</h2>
       <div className="formulario-container">

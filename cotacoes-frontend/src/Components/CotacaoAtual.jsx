@@ -15,11 +15,9 @@ const CotacaoAtual = () => {
         { label: 'Iene Japonês (JPY)', id: 'JPY-BRL', api: 'moeda' },
         { label: 'Yuan (CNY)', id: 'CNY-BRL', api: 'moeda' },
         {label: 'Rublo Russo (RUB)', id: 'RUB-BRL', api: 'moeda' },
-        // { label: 'Franco Suíço (CHF)', id: 'CHF-BRL', api: 'moeda' },
         { label: 'Bitcoin (BTC)', id: 'bitcoin', api: 'cripto' },
         { label: 'Ethereum (ETH)', id: 'ethereum', api: 'cripto' },
-        
-
+        {label: 'Tether (USDT)', id: 'tether', api: 'cripto' },
     ];
 
     useEffect(() => {
@@ -63,7 +61,7 @@ const CotacaoAtual = () => {
                     <option value="rub">Rublo Russo</option>
                     <option value="bitcoin">Bitcoin</option>
                     <option value="ethereum">Ethereum</option>
-                    
+                    <option value="tether">Tether</option>
                 </select>
             </div>
             {cotacao !== null ? (
