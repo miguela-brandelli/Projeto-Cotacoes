@@ -50,7 +50,7 @@ const CotacaoAtual = ({ onMoedaChange }) => {
     return (
         <div className="cotacao-container">
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <h3 style={{ marginBottom: '10px', color: '#81fca6' }}>
+                <h3 style={{ marginBottom: '10px', color: '#5197d4' }}>
                     Indicadores em Tempo Real
                 </h3>
                 <select id="seletor-moeda" value={opcaoSelecionada} onChange={(e) => setOpcaoSelecionada(e.target.value)}>
@@ -62,9 +62,6 @@ const CotacaoAtual = ({ onMoedaChange }) => {
                     <option value="jpy">Iene Japonês</option>
                     <option value="cny">Yuan Chinês</option>
                     <option value="rub">Rublo Russo</option>
-                    {/* <option value="bitcoin">Bitcoin</option>
-                    <option value="ethereum">Ethereum</option>
-                    <option value="tether">Tether</option> */}
                 </select>
             </div>
             {cotacao !== null ? (

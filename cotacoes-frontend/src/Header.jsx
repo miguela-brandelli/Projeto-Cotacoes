@@ -22,7 +22,7 @@ const styles = {
     marginRight: "10px",
   },
   title: {
-    color: "#8aff00", 
+    color: "#0055ff", 
     fontSize: "24px",
     fontWeight: "bold",
   },

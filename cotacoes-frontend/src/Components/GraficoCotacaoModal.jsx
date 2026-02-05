@@ -21,10 +21,10 @@ const GraficoCotacaoModal = ({ cotacoes, indicadorNome, onClose }) => {
         dadosCompletos.push({
           data: hist.dataAntiga,
           valor: hist.valorAntigo
-        });
-      });
+        },);
+      },);
     }
-  });
+  },);
 
 
   const dadosOrdenados = dadosCompletos.sort((a, b) => new Date(a.data) - new Date(b.data));
@@ -43,7 +43,7 @@ const GraficoCotacaoModal = ({ cotacoes, indicadorNome, onClose }) => {
               <XAxis dataKey="data" tickFormatter={(str) => new Date(str).toLocaleDateString('pt-BR')} />
               <YAxis />
               <Tooltip labelFormatter={(str) => `Data: ${new Date(str).toLocaleDateString('pt-BR')}`} />
-              <Line type="monotone" dataKey="valor" stroke="#4caf50" strokeWidth={2} />
+              <Line type="monotone" dataKey="valor" stroke=" #1571c1" strokeWidth={2} />
             </LineChart>
           </ResponsiveContainer>
         )}

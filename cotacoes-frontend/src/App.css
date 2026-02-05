@@ -25,7 +25,7 @@ html, body {
 .titulo-principal {
   text-align: center;
   font-size: 40px;
-  color: #a2f5af;
+  color:  #5197d4;
   margin-bottom: 10px;
   letter-spacing: 1px;
 }
@@ -34,7 +34,7 @@ html, body {
   display: block;
   margin: 0 auto 10px;
   width: 120px;
-  filter: drop-shadow(0 0 6px #33b081);
+  filter: drop-shadow(0 0 6px #5197d4);
 }
 
 .subtitulo-principal {
@@ -48,16 +48,16 @@ html, body {
   border: none;
   height: 2px;
   margin: 40px auto 20px;
-  background: linear-gradient(to right, #00ff99, #00cc66);
+  background: linear-gradient(to right, #5197d4, #0c5798);
   width: 80%;
-  box-shadow: 0 0 12px #00ff99;
+  box-shadow: 0 0 12px #5197d4;
   border-radius: 2px;
 }
 
 .titulo-secundario {
   text-align: center;
   font-size: 26px;
-  color: #81fca6;
+  color: #5197d4;
   margin-bottom: 30px;
   font-weight: 600;
 }
@@ -75,18 +75,18 @@ html, body {
   padding: 25px;
   border-radius: 12px;
   width: 320px;
-  box-shadow: 0 0 15px rgba(0, 255, 128, 0.15);
+  box-shadow: 0 0 15px rgba(0, 110, 255, 0.15);
   transition: box-shadow 0.3s;
 }
 
 .formulario:hover {
-  box-shadow: 0 0 20px rgba(0, 255, 128, 0.25);
+  box-shadow: 0 0 15px rgba(0, 110, 255, 0.15);
 }
 
 .formulario h2 {
   margin-bottom: 18px;
   font-size: 20px;
-  color: #81fca6;
+  color: #5197d4;
 }
 
 .formulario div {
@@ -107,14 +107,14 @@ html, body {
 
 .formulario input:focus,
 .formulario select:focus {
-  border-color: #33b081;
+  border-color: #5197d4;
   outline: none;
 }
 
 .formulario button {
   width: 100%;
   padding: 10px;
-  background-color: #33b081;
+  background-color: #5197d4;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -125,7 +125,7 @@ html, body {
 }
 
 .formulario button:hover {
-  background-color: #2fa471;
+  background-color: #5197d4;
 }
 
 .tabela-container {
@@ -150,7 +150,7 @@ html, body {
 
 .tabela th {
   background-color: #272727;
-  color: #81fca6;
+  color: #1c76bf;
   font-weight: bold;
 }
 
@@ -198,7 +198,7 @@ html, body {
 }
 
 .cotacao-container:hover {
-  box-shadow: 0 0 20px rgba(0, 255, 128, 0.25);
+  box-shadow: 0 0 20px rgba(18, 63, 188, 0.25);
 }
 
 .cotacao-container select {
@@ -211,12 +211,12 @@ html, body {
 }
 
 .cotacao-container select:focus {
-  outline: 2px solid #33b081;
+  outline: 2px solid #5197d4;
 }
 
 .cotacao-container span {
   font-size: 1.3rem;
-  color: #81fca6;
+  color: #5197d4;
 }
 
 .cotacoes-bloco-central {
@@ -240,7 +240,7 @@ html, body {
   background-color: #1f1f1f;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 0 12px #33b08166;
+  box-shadow: 0 0 12px #5197d4;
 }
 
 .grafico-box {

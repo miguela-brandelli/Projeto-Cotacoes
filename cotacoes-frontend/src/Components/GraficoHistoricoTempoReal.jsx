@@ -77,7 +77,7 @@ const GraficoHistoricoTempoReal = ({ moeda }) => {
             <XAxis dataKey="data" />
             <YAxis domain={['auto', 'auto']} />
             <Tooltip formatter={(value) => `R$ ${value.toFixed(2)}`} />
-            <Line type="monotone" dataKey="valor" stroke="#33b081" strokeWidth={2} dot={{ r: 2 }} />
+            <Line type="monotone" dataKey="valor" stroke=" #1571c1" strokeWidth={2} dot={{ r: 2 }} />
           </LineChart>
         </ResponsiveContainer>
       )}
