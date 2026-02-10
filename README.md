@@ -1,6 +1,6 @@
-# MonValue - Sistema de Cotações Financeiras
+# Dt.Value - Sistema de Cotações Financeiras
 
-MonValue é uma aplicação web desenvolvida para o gerenciamento de cotações de indicadores financeiros (como Dólar, Bitcoin, Ouro, etc.). O sistema permite o cadastro de indicadores, o registro de suas cotações ao longo do tempo, a edição com histórico de alterações e visualização gráfica da evolução dos valores.
+Dt.Value é uma aplicação web desenvolvida para o gerenciamento de cotações de indicadores financeiros (como Dólar, Bitcoin, Ouro, etc.). O sistema permite o cadastro de indicadores, o registro de suas cotações ao longo do tempo, a edição com histórico de alterações e visualização gráfica da evolução dos valores.
 
 ## Funcionalidades
 

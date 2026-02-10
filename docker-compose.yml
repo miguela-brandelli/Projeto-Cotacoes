@@ -1,6 +1,26 @@
-version: '3.8'
+version: "3.8"
 
 services:
+  # Banco de dados PostgreSQL
+  database:
+    image: postgres:15-alpine
+    container_name: cotacao-database
+    environment:
+      POSTGRES_DB: cotacoes
+      POSTGRES_USER: cotacao_user
+      POSTGRES_PASSWORD: senha_segura_aqui
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - cotacao-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cotacao_user -d cotacoes"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   # Backend Spring Boot
   backend:
     build:
@@ -11,10 +31,26 @@ services:
       - "8080:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/cotacoes
+      - SPRING_DATASOURCE_USERNAME=cotacao_user
+      - SPRING_DATASOURCE_PASSWORD=senha_segura_aqui
+    volumes:
+      - backend_logs:/app/logs
+    depends_on:
+      database:
+        condition: service_healthy
     networks:
       - cotacao-network
     healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/actuator/health"]
+      test:
+        [
+          "CMD",
+          "wget",
+          "--quiet",
+          "--tries=1",
+          "--spider",
+          "http://localhost:8080/actuator/health",
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -36,3 +72,9 @@ services:
 networks:
   cotacao-network:
     driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+  backend_logs:
+    driver: local

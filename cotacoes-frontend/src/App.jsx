@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="App">
       <img className="logo" src="/android-chrome-192x192.png" alt="Logo" />
-      <h1 className="titulo-principal">MonValue</h1>
+      <h1 className="titulo-principal">Dt.Value</h1>
       <h4 className="subtitulo-principal">O valor da informação certa, na hora certa.</h4>
 
       <div className="cotacoes-bloco-central">
