@@ -1,7 +1,4 @@
-version: "3.8"
-
 services:
-  # Banco de dados PostgreSQL
   database:
     image: postgres:15-alpine
     container_name: cotacao-database
@@ -21,12 +18,12 @@ services:
       timeout: 5s
       retries: 5
 
-  # Backend Spring Boot
   backend:
     build:
       context: ./cotacoes-backend
       dockerfile: Dockerfile
     container_name: cotacao-backend
+    image: migzera/cotacoes-backend:1.0
     ports:
       - "8080:8080"
     environment:
@@ -56,12 +53,12 @@ services:
       retries: 3
       start_period: 40s
 
-  # Frontend React
   frontend:
     build:
       context: ./cotacoes-frontend
       dockerfile: Dockerfile
     container_name: cotacao-frontend
+    image: migzera/cotacoes-frontend:1.0
     ports:
       - "80:80"
     depends_on:
