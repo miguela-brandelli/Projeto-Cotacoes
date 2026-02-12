@@ -78,7 +78,6 @@ export default function CotacaoForm({ indicadores = [], onCadastro }) {
     <div>
       <form onSubmit={handleSubmit} className="formulario">
         <h2>Cadastrar Cotação:</h2>
-
         {mensagem.texto && (
           <div className={`mensagem ${mensagem.tipo}`}>{mensagem.texto}</div>
         )}

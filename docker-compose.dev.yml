@@ -1,0 +1,60 @@
+services:
+  database:
+    image: postgres:15-alpine
+    container_name: cotacao-database-dev
+    environment:
+      POSTGRES_DB: cotacoes
+      POSTGRES_USER: cotacao_user
+      POSTGRES_PASSWORD: senha_segura_aqui
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    networks:
+      - cotacao-network
+
+  backend:
+    build:
+      context: ./cotacoes-backend
+      dockerfile: Dockerfile.dev
+    container_name: cotacao-backend-dev
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/cotacoes
+      - SPRING_DATASOURCE_USERNAME=cotacao_user
+      - SPRING_DATASOURCE_PASSWORD=senha_segura_aqui
+    volumes:
+      - ./cotacoes-backend/src:/app/src
+      - ./cotacoes-backend/pom.xml:/app/pom.xml
+      - maven_cache:/root/.m2
+    depends_on:
+      - database
+    networks:
+      - cotacao-network
+
+  frontend:
+    build:
+      context: ./cotacoes-frontend
+      dockerfile: Dockerfile.dev
+    container_name: cotacao-frontend-dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./cotacoes-frontend:/app
+      - /app/node_modules  
+    environment:
+      - VITE_API_URL=http://localhost:8080
+    depends_on:
+      - backend
+    networks:
+      - cotacao-network
+
+networks:
+  cotacao-network:
+    driver: bridge
+
+volumes:
+  postgres_data_dev:
+  maven_cache:

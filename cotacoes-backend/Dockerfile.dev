@@ -1,0 +1,15 @@
+FROM maven:3.9-eclipse-temurin-17
+
+WORKDIR /app
+
+# Copia pom.xml
+COPY pom.xml .
+
+# Baixa dependências
+RUN mvn dependency:go-offline -B
+
+# Expõe porta
+EXPOSE 8080
+
+# Roda com Spring Boot DevTools (hot reload)
+CMD ["mvn", "spring-boot:run", "-Dspring-boot.run.jvmArguments='-Dspring.devtools.restart.enabled=true'"]
