@@ -4,44 +4,42 @@ import axios from "axios";
 export default function IndicadorForm({ onCadastro }) {
   const [nome, setNome] = useState("");
   const [sigla, setSigla] = useState("");
+  const [mensagem, setMensagem] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMensagem({ tipo: "", texto: "" });
     setLoading(true);
-
-    console.log("Tentando cadastrar:", { nome, sigla });
+    setMensagem(null);
 
     try {
       const response = await axios.post("http://localhost:8080/indicadores", {
         nome,
         sigla,
       });
-      console.log("Resposta do servidor:", response.data);
+
       setNome("");
       setSigla("");
       setMensagem({
         tipo: "sucesso",
         texto: "Indicador cadastrado com sucesso!",
       });
+
       if (onCadastro) onCadastro();
     } catch (error) {
-      console.error("Erro completo:", error);
       if (error.response) {
-        console.error("Erro do servidor:", error.response.data);
         setMensagem({
           tipo: "erro",
-          texto: `Erro do servidor: ${error.response.data.message || error.response.statusText}`,
+          texto: `Erro do servidor: ${
+            error.response.data.message || error.response.statusText
+          }`,
         });
       } else if (error.request) {
-        console.error("Sem resposta do servidor:", error.request);
         setMensagem({
           tipo: "erro",
-          texto:
-            "Servidor não respondeu. Verifique se o backend está rodando em http://localhost:8080/indicadores",
+          texto: "Servidor não respondeu. Verifique se o backend está rodando.",
         });
       } else {
-        console.error("Erro na requisição:", error.message);
         setMensagem({
           tipo: "erro",
           texto: `Erro: ${error.message}`,

@@ -17,7 +17,7 @@
   border-radius: 8px;
   width: 90%;
   max-width: 600px;
-  color: white;
+  color: #ffffff;
 }
 
 .botoes-modal {
@@ -30,7 +30,7 @@ button {
   padding: 10px 20px;
   background-color: #1571c1;
   border: none;
-  color: white;
+  color: #ffffff;
   border-radius: 5px;
   cursor: pointer;
 }

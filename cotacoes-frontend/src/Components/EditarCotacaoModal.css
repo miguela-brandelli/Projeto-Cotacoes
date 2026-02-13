@@ -16,7 +16,7 @@
   padding: 20px;
   border-radius: 8px;
   width: 400px;
-  color: #fff;
+  color: #ffffff;
 }
 
 .modal h2 {
@@ -28,7 +28,7 @@
   margin-bottom: 12px;
   padding: 8px;
   background-color: #2a2a2a;
-  color: #fff;
+  color: #ffffff;
   border: none;
   border-radius: 4px;
 }
@@ -44,7 +44,7 @@
   padding: 10px;
   border: none;
   border-radius: 4px;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
 }
 
