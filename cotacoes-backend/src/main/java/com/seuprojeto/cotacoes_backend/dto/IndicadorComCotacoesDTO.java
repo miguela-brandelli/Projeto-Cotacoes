@@ -2,13 +2,25 @@ package com.seuprojeto.cotacoes_backend.dto;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Indicador com suas respectivas cotações")
 public class IndicadorComCotacoesDTO {
+
+    @Schema(description = "ID do indicador", example = "1")
     private Long id;
+
+    @Schema(description = "Nome do indicador", example = "Dólar")
     private String nome;
+
+    @Schema(description = "Sigla do indicador", example = "USD")
     private String sigla;
+
+    @Schema(description = "Lista de cotações vinculadas ao indicador")
     private List<CotacaoDTO> cotacoes;
 
-    public IndicadorComCotacoesDTO() {}
+    public IndicadorComCotacoesDTO() {
+    }
 
     public IndicadorComCotacoesDTO(Long id, String nome, String sigla, List<CotacaoDTO> cotacoes) {
         this.id = id;
